@@ -148,7 +148,8 @@ namespace Oxide.Plugins
             if (loadout == null)
                 return;
 
-            player.inventory.Strip();
+            player.inventory.containerBelt.Clear();
+            ItemManager.DoRemoves();
             loadout.GiveToPlayer(player);
         }
 
@@ -191,18 +192,14 @@ namespace Oxide.Plugins
             public static Loadout BuildFromPlayer(BasePlayer player, string[] disallowedItems)
             {
                 var inventory = player.inventory;
-                var mainItems = GetItemsFromContainer(inventory.containerMain, 24, disallowedItems);
                 var beltItems = GetItemsFromContainer(inventory.containerBelt, 6, disallowedItems);
-                var wornItems = GetItemsFromContainer(inventory.containerWear, 7, disallowedItems);
 
-                if (mainItems == null && beltItems == null && wornItems == null)
+                if (beltItems == null)
                     return null;
 
                 var loadout = new Loadout()
                 {
-                    MainItems = mainItems,
                     BeltItems = beltItems,
-                    WornItems = wornItems,
                 };
 
                 return loadout;
@@ -241,14 +238,8 @@ namespace Oxide.Plugins
             {
                 var inventory = player.inventory;
 
-                if (MainItems != null)
-                    AddItemsToContainer(inventory.containerMain, MainItems);
-
                 if (BeltItems != null)
                     AddItemsToContainer(inventory.containerBelt, BeltItems);
-
-                if (WornItems != null)
-                    AddItemsToContainer(inventory.containerWear, WornItems);
             }
         }
 

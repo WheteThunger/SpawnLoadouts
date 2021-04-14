@@ -1,5 +1,7 @@
 ## Features
 
+**This branch of the plugin only allows saving belt items. Further development will continue on the master branch.**
+
 - Allows players to make their own spawn loadouts
 - Allows settings a default loadout for new players
 
@@ -54,7 +56,7 @@ Default configuration:
 
 - `DefaultLoadout` -- Definition for the default loadout. This loadout can be changed with the command `loadout setdefault` for players with permission.
 - `DisallowedItems` -- List of item short names that players are not allowed to save in their loadouts.
-  - Example: `["explosive.timed", "rocket.basic"]`.
+  - Example: `["explosive.timed", "ammo.rocket.basic"]`.
 
 ## Localization
 
